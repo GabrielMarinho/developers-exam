@@ -1,8 +1,11 @@
-using Infrastructure;
+using Domain.IoC;
+using Infrastructure.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 
+services.InfrastructureRegister(builder.Configuration);
+services.DomainRegister(builder.Configuration);
 
 services.AddControllersWithViews();
 

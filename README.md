@@ -50,10 +50,40 @@ No item de disparo de e-mail não há necessidade de implementar o disparo em si
 ### Feedback
 Como parte da avaliação, desejamos que faça um feedback sobre seu entendimento de cada camada do projeto:
 1. Qual papel da camada de Domain ?
+```
+Na Domain é onde colocamos as entidades, interfaces de serviços, interface de repositórios e tudo o que faz parte do domínio.
+A camada de domínio não deve depender de qualquer outra camada, ela deverá "servir" praticamente todas as outras camandas.  
+```
+
 2. Qual papel da camada de Infrastructure ?
+```
+Na Infra é onde efetuamos o acesso a dados, podendo ser um banco de dados, um arquivo, etc... Onde colocamos os mapeamentos das entidades
+(da camada de domínio) informando a tabela e campos referentes aquela entidade. Alguns ainda colocam acesso a APIs externas, filas, etc.
+Onde definimos o contexto do banco de dados e suas configurações de acesso.
+```
+
 3. Qual papel da camada de WebApp ?
+```
+Esta camada é a camada de entrada. Onde definimos os controllers, filtros, DTOs ou ViewModels, conversores (de DTO para Entidade), etc.
+Definimos aqui também as configurações gerais da aplicação, como o carregamento dos serviços onde estes estarão prontos para serem
+utilizados como injeção de dependência.
+```
+
 4. Faça um resumo de como funciona a comunicação entre as camadas e qual é suas hierarquias.
+```
+- A camada WebApp "conhece" as camadas de Domínio e Infraestrutur;
+- A camada Infraestrutura "conhece" a camada de Domínio;
+- A camada Domínio não deve "conhecer" nenhuma outra camada.
+```
+
 5. Aponte um item negativo sobre o projeto que julgar necessário.
+```
+Não seria um ponto negativo, mas particularmente, gosto de ter criar a camada de Aplicação. Onde aqui colocaria a implementação dos
+serviços. Para cada serviço externo ou serviço "geral" (envio de email, SMS, etc..), gosto de criar um "projeto class lib" específico
+para aquele serviço.
+
+Tendo mais tempo, ainda criaria alguns testes unitários.
+```
 
 ### Regras:
 O desenvolvedor irá contar com **5 horas** para desenvolver e fazer os feedbacks.
